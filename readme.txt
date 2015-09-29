@@ -24,3 +24,8 @@ git reflog用来记录你的每一次命令
  untracked 还没被git add 
 
  git diff HEAD -- readme.txt命令可以查看工作区和版本库里面最新版本的区别
+
+ git checkout -- file 丢掉工作区的修改  --以版本库（暂存区|master）里为准
+ git checkout file 没有-- 就是切换分支
+
+ git reset HEAD file 把暂存区的修改撤销 重新放回工作区
