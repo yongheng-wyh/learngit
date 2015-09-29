@@ -1,0 +1,105 @@
+git-scm
+邮右键-git bash here
+
+mkdir repository_name--创建一个空目录
+
+cd 进入文件夹
+
+pwd 显示当前路径
+
+git init --初始化一个Git仓库,把这个目录变成Git可以管理的仓库,不要修改，若没有，是隐藏了 ls -ah
+         --以后呢？
+
+
+1git add file_name 告诉Git，把文件添加到仓库 file--要放在仓库目录或子目录下
+2git commit -m "wrote a readme file" 告诉Git，把文件提交到仓库 -m 后面是本次提交的说明
+小结：可add多个文件 一次commit 全提交了（同svn）
+
+
+git status --让我们时刻掌握仓库当前的状态
+本地修改后 
+
+git diff file_name --对比本地和版本库里代码
+每次修改后提交要 git add  git commit
+
+
+莫名错误 删除index.lock
+rm -f .git/index.lock
+
+git log 显示从最近到最远的提交日志
+
+版本回退 
+ git reset --hard HEAD^  --HEAD表示当前版本 HEAD^表示上一个版本
+
+ 这样会 覆盖本地修改的内容  --hard 后可加commit id 这样只要窗口没关，还可以反悔
+ 
+ git reflog --查看命令历史。上面如果窗口关了，此命令找回想要的 commit id 
+
+
+
+HEAD指针问题 看图
+
+
+
+
+
+////////////////////////////////
+工作区和暂存区
+工作区（working directory）-电脑里能看到的目录-如我的learngit文件夹就是一个工作区
+
+版本库（repository）
+工作区有一个隐藏目录.git，这个不算工作区，而是Git的版本库。
+版本库：暂存区（stage或叫index）| master-git创建的第一个分支 | HEAD指针 
+
+
+git add --就是把当前的内容加到暂存区 
+git commit-- 就是把暂存区的所有内容提交到当前分支 （分支和HEAD后边讲）
+
+若在工作区修改了文件 但没有git add 直接 git commit 这次修改不会被提交 因为提交的是工作区里修改过的文件
+
+撤销修改
+git -checkout -- file_name --空格，没add到暂存区-撤销工作区的修改回到版本库中的 若add了-则回到暂存区状态
+
+git checkout -- file_name  若没有 -- 则是 切换到另一个分支（后面讲）
+
+
+
+git diff HEAD -- readme.txt
+
+
+git reset HEAD file_name 可以把暂存区的修改撤销掉（unstage），重新放回工作区 当我们用HEAD时，表示最新的版本。
+
+
+删除文件
+ rm test.txt 删除本地文件  此时 git status  
+ 如果此时误删 可用 git checkout -- test.txt  从版本库中恢复
+ git rm test.txt 删除版本库中的  
+
+////////////////////
+远程仓库： github | 自己搭建git服务器
+
+本地Git仓库和GitHub仓库之间的传输是通过SSH加密的 
+
+第1步：创建SSH Key。在用户主目录下，看看有没有.ssh目录，如果有，再看看这个目录下有没有id_rsa和id_rsa.pub这两个文件，如果已经有了，可直接跳到下一步。如果没有，打开Shell（Windows下打开Git Bash），创建SSH Key：
+
+$ ssh-keygen -t rsa -C "youremail@example.com"
+第2步：登陆GitHub，打开“Account settings”，“SSH Keys”页面：
+
+github 不让他人看到自己的代码 需付费 私人仓库 或者自己搭建git服务器
+
+添加远程仓库（github）
+现在 github上创建一个空的仓库 learngit
+
+在本地的learngit仓库下运行命令： 
+$ git remote add origin git@github.com:yongheng-wyh/learngit.git  远程库的名字就是origin，这是Git默认的叫法，也可以改成别
+
+下一步，就可以把本地库的所有内容推送到远程库上：
+$ git push -u origin master  第一次 远程仓库是空的要加-u 以后只需要 git push origin master
+把本地库的内容推送到远程，用git push命令，实际上是把当前分支master推送到远程。
+
+
+复制 ssh 命令：clip < ~ /.ssh/id_rsa.pub
+
+
+克隆远程库命令：git clone git@gitlab.alibaba-inc.com:amap-backend/wap.amap.com
+克隆地址 http://gitlab.alibaba-inc.com/amap-backend/wap.amap.com
