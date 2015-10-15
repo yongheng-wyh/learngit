@@ -28,6 +28,9 @@ rm -f .git/index.lock
 
 git log 显示从最近到最远的提交日志
 
+
+
+
 版本回退 
  git reset --hard HEAD^  --HEAD表示当前版本 HEAD^表示上一个版本
 
@@ -38,6 +41,8 @@ git log 显示从最近到最远的提交日志
 
 
 HEAD指针问题 看图
+
+
 
 
 
@@ -103,3 +108,8 @@ $ git push -u origin master  第一次 远程仓库是空的要加-u 以后只需要 git push ori
 
 克隆远程库命令：git clone git@gitlab.alibaba-inc.com:amap-backend/wap.amap.com
 克隆地址 http://gitlab.alibaba-inc.com/amap-backend/wap.amap.com
+
+
+
+
+10-15
