@@ -73,3 +73,6 @@ git upstream origin yongheng  关联了一个远程库的分支叫yongheng
 
 
 每次commit是 提交到本地的yongheng 分支 --master？ 自动同步到远程的 yongheng 分支
+
+
+10-15-yh_test
